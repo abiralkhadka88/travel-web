@@ -229,6 +229,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-gradient-to-r from-sky-500/90 to-blue-600/90">
         <Image
           src="https://images.pexels.com/photos/9150857/pexels-photo-9150857.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          // src="https://images.pexels.com/photos/2902939/pexels-photo-2902939.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           alt="Hero background"
           fill
           sizes="100%"

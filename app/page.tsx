@@ -1,5 +1,6 @@
 import DescriptionText from "@/components/DescriptionText/DescriptionText";
 import HeroSection from "@/components/HeroSection/HeroSection";
+import PopularActivities from "@/components/PopularActivities/PopularActivities";
 
 export default function Home() {
   return (
@@ -7,10 +8,8 @@ export default function Home() {
       <div className="w-full bg-red-50">
         <HeroSection />
       </div>
-      <div className="">
-        <DescriptionText />
-      </div>
-      <div>Ohters</div>
+      <DescriptionText />
+      <PopularActivities />
     </div>
   );
 }
