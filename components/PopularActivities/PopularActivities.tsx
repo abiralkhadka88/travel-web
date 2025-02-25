@@ -22,7 +22,7 @@ const treks = [
     duration: "20 Days",
     image:
       "https://images.pexels.com/photos/20046906/pexels-photo-20046906/free-photo-of-lake-and-mountains-in-winter.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    slug: "humla-saipal-trek",
+    slug: "majestic-bhutan-tour",
   },
   {
     id: 2,
@@ -73,7 +73,7 @@ const treks = [
 
 const TrekCard = ({ trek }: { trek: Trek }) => {
   return (
-    <Link href={`/treks/${trek.slug}`} className="group">
+    <Link href={`/${trek.slug}`} className="group">
       <div className="relative overflow-hidden rounded-lg shadow-warm-md hover:shadow-warm-xl transition-all duration-300">
         <div className="relative aspect-[4/3] h-80 w-full">
           <Image
