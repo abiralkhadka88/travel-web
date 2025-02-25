@@ -187,7 +187,7 @@ const Navbar = () => {
                                 </h3>
                                 <div className="grid gap-2">
                                   {section.items.map((subItem) => (
-                                    <a
+                                    <Link
                                       key={subItem.title}
                                       href={subItem.href}
                                       className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
@@ -195,7 +195,7 @@ const Navbar = () => {
                                       <div className="text-sm font-medium leading-none">
                                         {subItem.title}
                                       </div>
-                                    </a>
+                                    </Link>
                                   ))}
                                 </div>
                               </div>
@@ -259,24 +259,24 @@ const Navbar = () => {
                         {section.title}
                       </div>
                       {section.items.map((subItem) => (
-                        <a
+                        <Link
                           key={subItem.title}
                           href={subItem.href}
                           className="block px-3 py-2 text-sm text-gray-700 hover:text-gray-900 transition-colors"
                         >
                           {subItem.title}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   ))}
                 </div>
               ) : (
-                <a
+                <Link
                   href={item.href}
                   className="block px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors"
                 >
                   {item.title}
-                </a>
+                </Link>
               )}
             </div>
           ))}

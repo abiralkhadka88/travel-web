@@ -566,12 +566,12 @@ const TourDetail = () => {
               Home
             </Link>
             <span className="mx-2">›</span>
-            <a
+            <Link
               href="/destinations"
               className="text-gray-500 hover:text-gray-900"
             >
               Best Destinations to Travel in South Asia
-            </a>
+            </Link>
             <span className="mx-2">›</span>
             <span className="text-gray-900">
               Majestic Bhutan: A Seven Day Bhutan Tour
