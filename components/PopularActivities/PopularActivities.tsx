@@ -17,7 +17,7 @@ interface Trek {
 const treks = [
   {
     id: 1,
-    title: "Humla Saipal Limi Valley Trek",
+    title: "Majestic Bhutan Tour",
     price: "US $ 4500",
     duration: "20 Days",
     image:

@@ -5,11 +5,13 @@ import PopularActivities from "@/components/PopularActivities/PopularActivities"
 export default function Home() {
   return (
     <div className="flex items-start justify-start flex-col w-full">
-      <div className="w-full bg-red-50">
+      <div className="w-full ">
         <HeroSection />
       </div>
       <DescriptionText />
-      <PopularActivities />
+      <div className="mx-auto">
+        <PopularActivities />
+      </div>
     </div>
   );
 }
