@@ -1,190 +1,3 @@
-// import React from "react";
-// import Link from "next/link";
-// import {
-//   Phone,
-//   Mail,
-//   Facebook,
-//   Twitter,
-//   Instagram,
-//   Youtube,
-//   Linkedin,
-// } from "lucide-react";
-
-// const Footer = () => {
-//   return (
-//     <footer className="bg-white">
-//       {/* Top Section with Three Columns */}
-//       <div className="container mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-//         {/* Activities Column */}
-//         <div>
-//           <h3 className="text-xl font-bold text-surface-dark mb-4">
-//             Travel Activities
-//           </h3>
-//           <ul className="space-y-2">
-//             <li>
-//               <Link
-//                 href="/trekking"
-//                 className="text-content hover:text-primary-dark transition-colors"
-//               >
-//                 Trekking Adventures
-//               </Link>
-//             </li>
-//             <li>
-//               <Link
-//                 href="/tours"
-//                 className="text-content hover:text-primary-dark transition-colors"
-//               >
-//                 Cultural Tours
-//               </Link>
-//             </li>
-//             <li>
-//               <Link
-//                 href="/helicopter"
-//                 className="text-content hover:text-primary-dark transition-colors"
-//               >
-//                 Helicopter Services
-//               </Link>
-//             </li>
-//             <li>
-//               <Link
-//                 href="/adventure"
-//                 className="text-content hover:text-primary-dark transition-colors"
-//               >
-//                 Adventure Sports
-//               </Link>
-//             </li>
-//             <li>
-//               <Link
-//                 href="/family"
-//                 className="text-content hover:text-primary-dark transition-colors"
-//               >
-//                 Family Packages
-//               </Link>
-//             </li>
-//           </ul>
-//         </div>
-
-//         {/* Company Info Column */}
-//         <div>
-//           <h3 className="text-xl font-bold text-surface-dark mb-4">Company</h3>
-//           <ul className="space-y-2">
-//             <li>
-//               <Link
-//                 href="/about"
-//                 className="text-content hover:text-primary-dark transition-colors"
-//               >
-//                 About Us
-//               </Link>
-//             </li>
-//             <li>
-//               <Link
-//                 href="/terms"
-//                 className="text-content hover:text-primary-dark transition-colors"
-//               >
-//                 Terms & Conditions
-//               </Link>
-//             </li>
-//             <li>
-//               <Link
-//                 href="/privacy"
-//                 className="text-content hover:text-primary-dark transition-colors"
-//               >
-//                 Privacy Policy
-//               </Link>
-//             </li>
-//             <li>
-//               <Link
-//                 href="/blog"
-//                 className="text-content hover:text-primary-dark transition-colors"
-//               >
-//                 Travel Blog
-//               </Link>
-//             </li>
-//             <li>
-//               <Link
-//                 href="/contact"
-//                 className="text-content hover:text-primary-dark transition-colors"
-//               >
-//                 Contact Us
-//               </Link>
-//             </li>
-//           </ul>
-//         </div>
-
-//         {/* Newsletter Section */}
-//         <div>
-//           <h3 className="text-xl font-bold text-surface-dark mb-4">
-//             Newsletter
-//           </h3>
-//           <p className="text-content mb-4">
-//             Subscribe to receive latest news and updates
-//           </p>
-//           <form className="space-y-3">
-//             <input
-//               type="firstName"
-//               placeholder="First name*"
-//               className="w-full px-4 py-2 rounded-lg border-warm focus:border-warm-dark focus:ring-1 focus:ring-primary-dark outline-none border"
-//             />
-//             <input
-//               type="email"
-//               placeholder="Last name*"
-//               className="w-full px-4 py-2 rounded-lg border-warm focus:border-warm-dark focus:ring-1 focus:ring-primary-dark outline-none border"
-//             />
-//             <input
-//               type="email"
-//               placeholder="Your email address"
-//               className="w-full px-4 py-2 rounded-lg border-warm focus:border-warm-dark focus:ring-1 focus:ring-primary-dark outline-none border"
-//             />
-//             <button className="w-full bg-primary hover:bg-primary-dark text-content font-semibold py-2 rounded-lg transition-colors">
-//               Subscribe
-//             </button>
-//           </form>
-//         </div>
-//       </div>
-
-//       {/* Contact Information Section */}
-//       <div className="border-t border-warm-light">
-//         <div className="container mx-auto px-4 py-8 flex flex-wrap justify-between items-center gap-8">
-//           <div className="flex flex-col sm:flex-row gap-6">
-//             <div className="flex items-center gap-2">
-//               <Phone size={20} className="text-primary-dark" />
-//               <span className="text-content">+1 234 567 8900</span>
-//             </div>
-//             <div className="flex items-center gap-2">
-//               <Mail size={20} className="text-primary-dark" />
-//               <span className="text-content">contact@example.com</span>
-//             </div>
-//           </div>
-//           <div className="flex gap-4">
-//             <Facebook className="w-6 h-6 text-content hover:text-primary-dark cursor-pointer" />
-//             <Twitter className="w-6 h-6 text-content hover:text-primary-dark cursor-pointer" />
-//             <Instagram className="w-6 h-6 text-content hover:text-primary-dark cursor-pointer" />
-//             <Youtube className="w-6 h-6 text-content hover:text-primary-dark cursor-pointer" />
-//             <Linkedin className="w-6 h-6 text-content hover:text-primary-dark cursor-pointer" />
-//           </div>
-//         </div>
-//       </div>
-
-//       {/* Copyright Section with Illustration */}
-//       <div className="bg-primary-dark text-white">
-//         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-//           <p>
-//             &copy; {new Date().getFullYear()} Your Company. All rights reserved.
-//           </p>
-//           {/* Payment Icons */}
-//           <div className="flex gap-2">
-//             <div className="w-8 h-5 bg-white rounded"></div>
-//             <div className="w-8 h-5 bg-white rounded"></div>
-//             <div className="w-8 h-5 bg-white rounded"></div>
-//           </div>
-//         </div>
-//       </div>
-//     </footer>
-//   );
-// };
-
-// export default Footer;
-
 import React from "react";
 import Link from "next/link";
 import { footerData } from "@/constants/constant";
@@ -257,19 +70,19 @@ const Footer = () => {
               <input
                 type="text"
                 placeholder="First name*"
-                className="w-full px-4 py-2 rounded-lg border-warm focus:border-warm-dark focus:ring-2 focus:ring-primary-light outline-none"
+                className="w-full px-4 py-2 rounded-lg border border-primary  focus:border-warm-dark focus:ring-1 focus:ring-primary-dark outline-none"
               />
               <input
                 type="text"
                 placeholder="Last name*"
-                className="w-full px-4 py-2 rounded-lg border-warm focus:border-warm-dark focus:ring-2 focus:ring-primary-light outline-none"
+                className="w-full px-4 py-2 rounded-lg border border-primary focus:border-warm-dark focus:ring-1 focus:ring-primary-dark outline-none"
               />
               <input
                 type="email"
                 placeholder="Email ID*"
-                className="w-full px-4 py-2 rounded-lg border-warm focus:border-warm-dark focus:ring-2 focus:ring-primary-light outline-none"
+                className="w-full px-4 py-2 rounded-lg border border-primary focus:border-warm-dark focus:ring-1 focus:ring-primary-dark outline-none"
               />
-              <button className="w-full bg-primary hover:bg-primary-dark text-content font-semibold py-2 rounded-lg transition-colors">
+              <button className="w-full bg-primary hover:bg-primary-dark text-white font-semibold py-2 rounded-lg transition-colors">
                 SUBSCRIBE
               </button>
             </form>

@@ -208,7 +208,7 @@ const Navbar = () => {
                         href={item.href}
                         className={cn(
                           navigationMenuTriggerStyle(),
-                          "hover:text-primary"
+                          "hover:text-primary font-semibold"
                         )}
                       >
                         {item.title}

@@ -450,16 +450,45 @@ import {
   Footprints,
   Mountain,
   Users,
+  XCircle,
+  CircleCheck,
+  Plus,
+  X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Navbar from "@/components/Navbar/Navbar";
 import Image from "next/image";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 interface TourImages {
   src: string;
   alt: string;
 }
+
+interface Inclusion {
+  title: string;
+  description: string;
+}
+interface Exclusion {
+  title: string;
+  description: string;
+}
+
+interface SimilarPackages {
+  id: number;
+  title: string;
+  price: string;
+  duration: string;
+  image: string;
+  slug: string;
+}
+
+// interface FAQ {
+//   question: string;
+//   answer: string;
+// }
 
 interface TourProps {
   title: string;
@@ -480,7 +509,102 @@ interface TourProps {
     title: string;
     description: string;
   }[];
+  inclusions: Inclusion[];
+  exclusions: Exclusion[];
+  datesAndAvailability: string;
+  similarPackages: SimilarPackages[];
+  faqs: FAQSection[];
 }
+
+const faqsData = [
+  {
+    title: "Nepal Trekking FAQS",
+    categorizedFAQs: [
+      {
+        category: "General Information",
+        questions: [
+          {
+            question: "Why trek with Luxury Holidays Nepal?",
+            answer:
+              "Luxury Holidays Nepal offers unparalleled service with experienced guides, premium accommodations, and personalized itineraries. With a decade of expertise in the region, we ensure safety, comfort, and unforgettable experiences.",
+          },
+          {
+            question:
+              "What should I know about booking my flights to/from Nepal?",
+            answer:
+              "We recommend booking your flights with a flexible change policy as mountain weather can cause delays. It's advisable to plan 1-2 buffer days at the end of your trip, especially during peak trekking seasons (spring and autumn).",
+          },
+        ],
+      },
+      {
+        category: "Guides & Language",
+        questions: [
+          {
+            question:
+              "Is hiring a guide necessary even if I have trekking experience?",
+            answer:
+              "Yes, a licensed guide is mandatory for trekking in most regions of Nepal for safety, navigation, and cultural interpretation. Our guides are professionally trained and provide invaluable local knowledge while ensuring your safety.",
+          },
+          {
+            question: "Can the guide speak English?",
+            answer:
+              "All our guides are fluent in English and have excellent communication skills. Many also speak other languages such as German, French, Spanish, and Japanese.",
+          },
+        ],
+      },
+      {
+        category: "Timing & Seasons",
+        questions: [
+          {
+            question: "What is the best time of year to trek in Nepal?",
+            answer:
+              "The best seasons for trekking are spring (March-May) with blooming rhododendrons and autumn (September-November) with clear skies and stable weather. Winter trekking (December-February) is possible at lower elevations, while summer (June-August) is less ideal due to monsoon rains.",
+          },
+          {
+            question:
+              "How many days of buffer should I plan for weather delays?",
+            answer:
+              "We recommend adding 2-3 buffer days to your itinerary, especially if trekking in remote areas or during shoulder seasons. Mountain weather can be unpredictable, and flights to/from smaller airports often experience delays.",
+          },
+        ],
+      },
+      {
+        category: "Practical Information",
+        questions: [
+          {
+            question: "Do I need a visa for Nepal, and how do I get one?",
+            answer:
+              "Yes, most nationalities require a visa for Nepal. You can obtain it upon arrival at Tribhuvan International Airport or at Nepal's land borders. Alternatively, you can apply online through Nepal's Department of Immigration website. Tourist visas are available for 15, 30, or 90 days.",
+          },
+          {
+            question:
+              "What type of accommodation can I expect during the trek?",
+            answer:
+              "Accommodation varies by trek and package. Most trails offer tea houses/lodges with basic but comfortable rooms. Our luxury packages include the best available accommodations with private bathrooms where possible. In remote areas, accommodations may be more rustic.",
+          },
+          {
+            question: "Do I need travel insurance for trekking?",
+            answer:
+              "Yes, comprehensive travel insurance is mandatory for all our treks. Your policy must cover high-altitude trekking (up to the maximum elevation of your trek), helicopter evacuation, and medical emergencies. We'll verify your insurance details before the trek begins.",
+          },
+        ],
+      },
+    ],
+  },
+];
+
+type FAQCategory = {
+  category: string;
+  questions: {
+    question: string;
+    answer: string;
+  }[];
+};
+
+type FAQSection = {
+  title: string;
+  categorizedFAQs: FAQCategory[];
+};
 
 const tourData: TourProps = {
   title: "A Seven Day Majestic Bhutan Tour",
@@ -550,10 +674,276 @@ const tourData: TourProps = {
         "On your final day, enjoy a leisurely morning in Thimphu or Paro, revisit your favorite spots, and reflect on the enriching experiences of your journey before departing from Paro International Airport.",
     },
   ],
+  inclusions: [
+    {
+      title: "ARRIVAL AND DEPARTURE:",
+      description:
+        "All ground transport in a private vehicle, including airport and hotel transfers.",
+    },
+    {
+      title: "HOTEL ACCOMMODATION IN KATHMANDU:",
+      description:
+        "4-star accommodation at Hotel Barahi Kathmandu on a twin/double sharing basis with breakfast.",
+    },
+    {
+      title: "PERMITS AND DOCUMENTATION:",
+      description:
+        "All necessary permits, including Langtang National Park Entry Permit and TIMS Card.",
+    },
+    {
+      title: "TREKKING EQUIPMENT:",
+      description:
+        "Complimentary duffel bag, T-shirt, trekking map, and sleeping bag (if necessary).",
+    },
+    {
+      title: "MEALS AND ACCOMMODATION DURING THE TREK:",
+      description:
+        "Accommodation in the best available guesthouses on a twin/double sharing basis with standard meals (breakfast, lunch, and dinner).",
+    },
+    {
+      title: "HELICOPTER FLIGHT:",
+      description: "Helicopter ride from Kyanjin Gompa to Kathmandu.",
+    },
+    {
+      title: "TRANSPORTATION:",
+      description:
+        "A private luxury vehicle for all ground transportation as per the itinerary.",
+    },
+    {
+      title: "GUIDES AND PORTERS:",
+      description:
+        "Experienced and government-licensed English-speaking trekking guide and porters (1 porter for every 2 trekkers).",
+    },
+    {
+      title: "STAFF SALARY AND INSURANCE:",
+      description:
+        "Daily wages, insurance, meals, and accommodation for all trekking staff and porters.",
+    },
+    {
+      title: "MEDICAL SUPPORT:",
+      description: "Comprehensive medical kit carried by the trekking guide.",
+    },
+  ],
+  exclusions: [
+    {
+      title: "INTERNATIONAL AIRFARE:",
+      description:
+        "Flights to and from Tribhuwan International Airport, Kathmandu.",
+    },
+    {
+      title: "NEPAL ENTRY VISA FEE:",
+      description:
+        "Visa fees for obtaining a Nepal entry visa (15 days: USD 30, 30 days: USD 50, 90 days: USD 125).",
+    },
+    {
+      title: "MEALS IN KATHMANDU:",
+      description:
+        "Lunch and dinner while staying in Kathmandu are not included.",
+    },
+    {
+      title: "EXTRA NIGHTS IN KATHMANDU:",
+      description:
+        "Extra nights' accommodation in Kathmandu due to early arrival, late departure, or any other reason outside the itinerary schedule.",
+    },
+    {
+      title: "TRAVEL INSURANCE:",
+      description:
+        "Travel insurance covers high-altitude trekking, medical emergencies, and helicopter evacuation.",
+    },
+    {
+      title: "PERSONAL EXPENSES:",
+      description:
+        "Expenses such as bar bills, snacks, soft drinks, hot showers, laundry, Wi-Fi, and battery charging during the trek.",
+    },
+    {
+      title: "TIPS AND GRATUITIES:",
+      description:
+        "Tips for guides, porters, and drivers (tipping is expected).",
+    },
+    {
+      title: "ADDITIONAL COSTS DUE TO DELAYS:",
+      description:
+        "Extra costs incurred due to delays caused by weather, strikes, or other unforeseen circumstances.",
+    },
+  ],
+  datesAndAvailability:
+    "Your Langtang Valley Helicopter Trek begins with your arrival at Tribhuwan International Airport, Kathmandu, where our team will warmly welcome you and transfer you to your hotel. You can arrive at any time on the first day. The trek concludes on the final day after breakfast with a private transfer to the airport for your departure. Please ensure your flight details are shared in advance for smooth airport transfers.",
+  similarPackages: [
+    {
+      id: 1,
+      title: "Majestic Bhutan Tour",
+      price: "US $ 4500",
+      duration: "20 Days",
+      image:
+        "https://images.pexels.com/photos/20046906/pexels-photo-20046906/free-photo-of-lake-and-mountains-in-winter.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      slug: "majestic-bhutan-tour",
+    },
+    {
+      id: 2,
+      title: "Annapurna Base Camp Trek",
+      price: "US $ 1200",
+      duration: "12 Days",
+      image:
+        "https://images.pexels.com/photos/14273399/pexels-photo-14273399.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      slug: "annapurna-base-camp",
+    },
+    {
+      id: 3,
+      title: "Weekend Eco Hike to Chisapani",
+      price: "US $ 25",
+      duration: "Day Trip",
+      image:
+        "https://images.pexels.com/photos/2902939/pexels-photo-2902939.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      slug: "chisapani-hike",
+    },
+    {
+      id: 4,
+      title: "Everest High Pass: An Outstanding Journey",
+      price: "US $ 2800",
+      duration: "19 Days",
+      image:
+        "https://images.pexels.com/photos/2085998/pexels-photo-2085998.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      slug: "everest-high-pass",
+    },
+    {
+      id: 5,
+      title: "Gokyo Lakes Trek",
+      price: "US $ 2200",
+      duration: "16 Days",
+      image:
+        "https://images.pexels.com/photos/18331843/pexels-photo-18331843/free-photo-of-a-person-climbing-up-a-mountain-with-a-backpack.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      slug: "gokyo-lakes",
+    },
+    {
+      id: 6,
+      title: "Day Trip Heli Tours to Everest",
+      price: "US $ 1515",
+      duration: "1 Day",
+      image:
+        "https://images.pexels.com/photos/20839121/pexels-photo-20839121/free-photo-of-mount-everest-in-himalayas.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      slug: "everest-heli-tour",
+    },
+  ],
+  faqs: faqsData,
+};
+
+const TrekCard = ({ trek }: { trek: SimilarPackages }) => {
+  return (
+    <Link href={`/${trek.slug}`} className="group">
+      <div className="relative overflow-hidden rounded-lg shadow-warm-md hover:shadow-warm-xl transition-all duration-300">
+        <div className="relative aspect-[4/3] h-80 w-full">
+          <Image
+            src={trek.image}
+            alt={trek.title}
+            fill
+            sizes="100%"
+            className="object-cover group-hover:scale-110 transition-transform duration-300"
+          />
+          <div className="absolute top-3 right-3 bg-white px-3 py-1 rounded-full text-sm font-medium text-content">
+            {trek.duration}
+          </div>
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+        <div className="absolute bottom-0 p-4 text-white">
+          <p className="text-primary font-bold mb-2">{trek.price}</p>
+          <h3 className="text-lg font-semibold leading-tight">{trek.title}</h3>
+        </div>
+      </div>
+    </Link>
+  );
 };
 
 const TourDetail = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [showInquiryModal, setShowInquiryModal] = useState(false);
+  const [showCallbackModal, setShowCallbackModal] = useState(false);
+  const [expandedFAQs, setExpandedFAQs] = useState<
+    { faqSet: number; category: number; question: number }[]
+  >([]);
+
+  const [inquiryForm, setInquiryForm] = useState({
+    fullName: "",
+    email: "",
+    travelers: "",
+    message: "",
+  });
+
+  const [callbackForm, setCallbackForm] = useState({
+    name: "",
+    phone: "",
+    address: "",
+  });
+
+  const handleInquirySubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Inquiry submitted:", inquiryForm);
+    setShowInquiryModal(false);
+    // Reset form
+    setInquiryForm({
+      fullName: "",
+      email: "",
+      travelers: "",
+      message: "",
+    });
+  };
+
+  const handleCallbackSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Callback requested:", callbackForm);
+    setShowCallbackModal(false);
+    // Reset form
+    setCallbackForm({
+      name: "",
+      phone: "",
+      address: "",
+    });
+  };
+
+  const toggleFAQ = (
+    faqSetIndex: number,
+    categoryIndex: number,
+    questionIndex: number
+  ) => {
+    const faqKey = {
+      faqSet: faqSetIndex,
+      category: categoryIndex,
+      question: questionIndex,
+    };
+    const isExpanded = expandedFAQs.some(
+      (item) =>
+        item.faqSet === faqSetIndex &&
+        item.category === categoryIndex &&
+        item.question === questionIndex
+    );
+
+    if (isExpanded) {
+      setExpandedFAQs((prev) =>
+        prev.filter(
+          (item) =>
+            !(
+              item.faqSet === faqSetIndex &&
+              item.category === categoryIndex &&
+              item.question === questionIndex
+            )
+        )
+      );
+    } else {
+      setExpandedFAQs((prev) => [...prev, faqKey]);
+    }
+  };
+
+  const isFAQExpanded = (
+    faqSetIndex: number,
+    categoryIndex: number,
+    questionIndex: number
+  ) => {
+    return expandedFAQs.some(
+      (item) =>
+        item.faqSet === faqSetIndex &&
+        item.category === categoryIndex &&
+        item.question === questionIndex
+    );
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -663,7 +1053,9 @@ const TourDetail = () => {
                     </div>
                     <div>
                       <p className="font-medium">Duration</p>
-                      <p className="text-sm text-gray-600">7 days</p>
+                      <p className="text-sm text-gray-600">
+                        {tourData.duration}
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
@@ -673,7 +1065,9 @@ const TourDetail = () => {
                     </div>
                     <div>
                       <p className="font-medium">Trip Difficulty</p>
-                      <p className="text-sm text-gray-600">Easy Trip</p>
+                      <p className="text-sm text-gray-600">
+                        {tourData.difficulty}
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
@@ -693,7 +1087,9 @@ const TourDetail = () => {
                     </div>
                     <div>
                       <p className="font-medium">Max. Elevation</p>
-                      <p className="text-sm text-gray-600">3120m</p>
+                      <p className="text-sm text-gray-600">
+                        {tourData.elevation}
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
@@ -703,7 +1099,9 @@ const TourDetail = () => {
                     </div>
                     <div>
                       <p className="font-medium">Group Size</p>
-                      <p className="text-sm text-gray-600">Min. 20 Pax</p>
+                      <p className="text-sm text-gray-600">
+                        {tourData.groupSize}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -740,6 +1138,134 @@ const TourDetail = () => {
                       <p className="text-gray-600 mt-2">{day.description}</p>
                     </div>
                   ))}
+                </div>
+              </div>
+
+              {/* Inclusions/Exclusions Section */}
+              <div className="bg-white p-6 rounded-lg shadow-sm mb-8">
+                <h2 className="text-xl font-bold text-navy-900 mb-6">
+                  Inclusions/Exclusions
+                </h2>
+
+                {/* Inclusions */}
+                <div className="space-y-4 mb-8">
+                  {tourData.inclusions.map((inclusion, index) => (
+                    <div key={index} className="flex">
+                      <div className="flex-shrink-0 mt-1">
+                        <CircleCheck className="w-5 h-5 text-green-500" />
+                      </div>
+                      <div className="ml-3">
+                        <p className="font-medium text-navy-800 uppercase">
+                          {inclusion.title}
+                        </p>
+                        <p className="text-gray-600">{inclusion.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Exclusions */}
+                <div className="space-y-4">
+                  {tourData.exclusions.map((exclusion, index) => (
+                    <div key={index} className="flex">
+                      <div className="flex-shrink-0 mt-1">
+                        <XCircle className="w-5 h-5 text-red-500" />
+                      </div>
+                      <div className="ml-3">
+                        <p className="font-medium text-navy-800 uppercase">
+                          {exclusion.title}
+                        </p>
+                        <p className="text-gray-600">{exclusion.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              {/* Dates & Availability Section */}
+              <div className="bg-white p-6 rounded-lg shadow-sm mb-8">
+                <h2 className="text-xl font-bold text-navy-900 mb-4">
+                  Dates & Availability
+                </h2>
+                <p className="text-gray-600 mb-6">
+                  {tourData.datesAndAvailability}
+                </p>
+                <Button className="bg-red-500 hover:bg-red-600 text-white">
+                  Book This Trip Now
+                </Button>
+              </div>
+
+              <div className="bg-white p-6 rounded-lg shadow-sm mb-8">
+                {/* <div className="flex justify-between items-center mb-4">
+                  <h2 className="text-xl font-bold text-navy-900">
+                    Frequently Asked Questions
+                  </h2>
+                </div> */}
+
+                {faqsData.map((faqSet, faqSetIndex) => (
+                  <div key={faqSetIndex} className="mb-4 space-y-6">
+                    <h2 className="text-lg font-bold text-gray-900">
+                      {faqSet.title}
+                    </h2>
+
+                    {faqSet.categorizedFAQs.map((category, catIndex) => (
+                      <div key={catIndex} className="mt-4">
+                        <h4 className="font-semibold text-md mb-3">
+                          {catIndex + 1}. {category.category}
+                        </h4>
+                        <div className="space-y-2">
+                          {category.questions.map((faq, qIndex) => (
+                            <div
+                              key={qIndex}
+                              className="border border-gray-200 rounded-md overflow-hidden"
+                            >
+                              <button
+                                className="w-full flex justify-between items-center p-4 text-left bg-white hover:bg-gray-50"
+                                onClick={() =>
+                                  toggleFAQ(faqSetIndex, catIndex, qIndex)
+                                }
+                              >
+                                <span className="font-medium text-gray-900">
+                                  {faq.question}
+                                </span>
+                                <Plus
+                                  className={`w-5 h-5 text-blue-500 transition-transform ${
+                                    isFAQExpanded(faqSetIndex, catIndex, qIndex)
+                                      ? "rotate-45"
+                                      : ""
+                                  }`}
+                                />
+                              </button>
+                              {isFAQExpanded(faqSetIndex, catIndex, qIndex) && (
+                                <div className="p-4 bg-gray-50 border-t border-gray-200">
+                                  <p className="text-gray-700">{faq.answer}</p>
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+
+                <div className="mt-8 bg-blue-50 p-4 rounded-md border border-blue-100">
+                  <h3 className="font-semibold text-lg text-blue-800 mb-2">
+                    Need help or have a question about this tour?
+                  </h3>
+                  <p className="text-blue-700 mb-4">
+                    Our team of experienced travel experts, with over a decade
+                    in the industry, is here to help you get started. Consult
+                    with us today!
+                  </p>
+                  <div className="flex justify-end">
+                    <Button
+                      variant="outline"
+                      className="bg-white border-blue-500 text-blue-500 hover:bg-blue-50"
+                      onClick={() => setShowCallbackModal(true)}
+                    >
+                      Request a Call Back
+                    </Button>
+                  </div>
                 </div>
               </div>
 
@@ -852,10 +1378,16 @@ const TourDetail = () => {
                     ))}
                   </div>
 
-                  <Button className="w-full mb-3 bg-red-500 hover:bg-red-600">
-                    Check Availability
+                  <Button className="w-full mb-3 bg-red-500 hover:bg-red-600 text-white">
+                    <Link href={`/booking/${"bhutan-tour"}`}>
+                      Check Availability
+                    </Link>
                   </Button>
-                  <Button variant="outline" className="w-full">
+                  <Button
+                    variant="outline"
+                    className="w-full"
+                    onClick={() => setShowInquiryModal(true)}
+                  >
                     Make An Enquiry
                   </Button>
                 </div>
@@ -869,8 +1401,164 @@ const TourDetail = () => {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* Add similar tour cards here */}
+              {tourData.similarPackages.map((trek) => (
+                <TrekCard key={trek.id} trek={trek} />
+              ))}
             </div>
           </div>
+
+          {showInquiryModal && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+              <div className="bg-white rounded-lg max-w-md w-full p-6 relative animate-fade-in">
+                <button
+                  className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+                  onClick={() => setShowInquiryModal(false)}
+                >
+                  <X className="w-5 h-5" />
+                </button>
+                <h2 className="text-xl font-bold mb-4">Drop your message</h2>
+                <form onSubmit={handleInquirySubmit}>
+                  <div className="space-y-4">
+                    <div>
+                      <Input
+                        placeholder="Full Name*"
+                        value={inquiryForm.fullName}
+                        onChange={(e) =>
+                          setInquiryForm({
+                            ...inquiryForm,
+                            fullName: e.target.value,
+                          })
+                        }
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Input
+                        type="email"
+                        placeholder="E-mail*"
+                        value={inquiryForm.email}
+                        onChange={(e) =>
+                          setInquiryForm({
+                            ...inquiryForm,
+                            email: e.target.value,
+                          })
+                        }
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Input
+                        placeholder="No of Travellers*"
+                        type="number"
+                        value={inquiryForm.travelers}
+                        onChange={(e) =>
+                          setInquiryForm({
+                            ...inquiryForm,
+                            travelers: e.target.value,
+                          })
+                        }
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Textarea
+                        className="w-full h-24 px-3 py-2 text-base bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="Message*"
+                        value={inquiryForm.message}
+                        onChange={(e) =>
+                          setInquiryForm({
+                            ...inquiryForm,
+                            message: e.target.value,
+                          })
+                        }
+                        required
+                      ></Textarea>
+                    </div>
+                    <Button
+                      type="submit"
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                    >
+                      SUBMIT
+                    </Button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          )}
+
+          {/* Callback Modal */}
+          {showCallbackModal && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+              <div className="bg-white rounded-lg max-w-md w-full p-6 relative animate-fade-in">
+                <button
+                  className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+                  onClick={() => setShowCallbackModal(false)}
+                >
+                  <X className="w-5 h-5" />
+                </button>
+                <h2 className="text-xl font-bold mb-4">Request a Call Back</h2>
+                <form onSubmit={handleCallbackSubmit}>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Name <span className="text-red-500">*</span>
+                      </label>
+                      <Input
+                        placeholder="Your name"
+                        value={callbackForm.name}
+                        onChange={(e) =>
+                          setCallbackForm({
+                            ...callbackForm,
+                            name: e.target.value,
+                          })
+                        }
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Phone Number <span className="text-red-500">*</span>
+                      </label>
+                      <Input
+                        type="tel"
+                        placeholder="Your phone number"
+                        value={callbackForm.phone}
+                        onChange={(e) =>
+                          setCallbackForm({
+                            ...callbackForm,
+                            phone: e.target.value,
+                          })
+                        }
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Address{" "}
+                        <span className="text-gray-400">(Optional)</span>
+                      </label>
+                      <Input
+                        placeholder="Your address"
+                        value={callbackForm.address}
+                        onChange={(e) =>
+                          setCallbackForm({
+                            ...callbackForm,
+                            address: e.target.value,
+                          })
+                        }
+                      />
+                    </div>
+                    <Button
+                      type="submit"
+                      className="w-full bg-blue-600 hover:bg-blue-700"
+                    >
+                      Submit Request
+                    </Button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          )}
         </div>
       </main>
     </div>
