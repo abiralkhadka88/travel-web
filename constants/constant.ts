@@ -152,16 +152,16 @@ export const footerData = {
         phone: "+977 1498 5969",
         flag: "🇳🇵",
       },
-      {
-        name: "USA & Canada",
-        phone: "+1 916 794 8443",
-        flag: "🇺🇸",
-      },
-      {
-        name: "Australia",
-        phone: "+61 481 612 408",
-        flag: "🇦🇺",
-      },
+      // {
+      //   name: "USA & Canada",
+      //   phone: "+1 916 794 8443",
+      //   flag: "🇺🇸",
+      // },
+      // {
+      //   name: "Australia",
+      //   phone: "+61 481 612 408",
+      //   flag: "🇦🇺",
+      // },
     ],
   },
   paymentMethods: ["visa", "mastercard", "amex", "discover", "jcb"],

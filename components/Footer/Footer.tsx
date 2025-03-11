@@ -10,7 +10,7 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {/* Activities and Trip Style */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             <h2 className="text-xl font-bold text-surface-dark">
               {footerData.activitiesAndStyle.title}
             </h2>
@@ -18,10 +18,10 @@ const Footer = () => {
             <div className="grid grid-cols-2 gap-8">
               {footerData.activitiesAndStyle.sections.map((section) => (
                 <div key={section.title}>
-                  <h3 className="text-lg font-semibold text-content mb-3">
+                  {/* <h3 className="text-lg font-semibold text-content mb-3">
                     {section.title}
-                  </h3>
-                  <ul className="space-y-2 text-sm">
+                  </h3> */}
+                  <ul className="space-y-2 ">
                     {section.links.map((link) => (
                       <li key={link.text}>
                         <Link
@@ -115,10 +115,10 @@ const Footer = () => {
       {/* Copyright and Payment Methods */}
       <div className="bg-primary-dark text-white py-4">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm">
-              © {new Date().getFullYear()} - G.B Travels Inc. RE-PRODUCED OR
-              COPY OF ANY PORTION OF THIS WEBSITE IS STRICTLY PROHIBITED.
+          <div className="flex flex-col md:flex-row justify-center items-center gap-4 text-center">
+            <p className="text-sm text-center">
+              © {new Date().getFullYear()} - Pearl Holidays Pvt Ltd. RE-PRODUCED
+              OR COPY OF ANY PORTION OF THIS WEBSITE IS STRICTLY PROHIBITED.
             </p>
             {/* <div className="flex gap-2">
               {footerData.paymentMethods.map((method) => (

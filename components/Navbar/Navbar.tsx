@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const menuItems = [
   {
@@ -19,10 +20,10 @@ const menuItems = [
       {
         title: "Popular Activities",
         items: [
-          { title: "Trekking in Nepal", href: "#" },
-          { title: "Tour in Nepal", href: "#" },
-          { title: "Climbing and Expedition", href: "#" },
-          { title: "One Day Activities", href: "#" },
+          { title: "Trekking in Nepal", href: "/majestic-bhutan-tour" },
+          { title: "Tour in Nepal", href: "/tour-in-nepal" },
+          { title: "Climbing and Expedition", href: "climbing-and-expedition" },
+          { title: "One Day Activities", href: "one-day-activities" },
         ],
       },
       {
@@ -163,7 +164,7 @@ const Navbar = () => {
               href="/"
               className="font-serif text-2xl font-bold text-gray-900"
             >
-              Pearls
+              <Image src={"/logo.jpg"} alt="logo" height={36} width={50} />
             </Link>
           </div>
 

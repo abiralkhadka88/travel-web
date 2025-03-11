@@ -83,12 +83,22 @@ const BookingPage = () => {
   const pricePerPerson = 1399;
   const totalAmount = pricePerPerson * (watchGuests || guests);
 
+  const destination = slug?.split("/").pop() || "";
+
+  // Then replace hyphens with spaces and capitalize each word
+  const formattedDestination = destination
+    .replace(/-/g, " ")
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+
   return (
     <div className="min-h-screen bg-gray-50 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">
-            Book Your Journey to {slug?.replace(/-/g, " ")}
+          <h1 className="text-3xl font-bold text-gray-900 mb-4 ">
+            Book Your Journey to{" "}
+            <span className="text-primary">{formattedDestination}</span>
           </h1>
           <p className="text-gray-600 max-w-3xl mx-auto">
             Complete your booking details below to secure your spot on our 7-day
@@ -263,13 +273,15 @@ const BookingPage = () => {
             <div className="sticky top-20 space-y-6">
               <Card>
                 <CardHeader className="bg-blue-50 border-b">
-                  <CardTitle>Booking Summary</CardTitle>
+                  <CardTitle className="text-primary-dark">
+                    Booking Summary
+                  </CardTitle>
                 </CardHeader>
                 <CardContent className="pt-6 bg-white">
                   <div className="space-y-4">
                     <div>
                       <h3 className="font-medium text-gray-900">
-                        {slug?.replace(/-/g, " ")}
+                        {formattedDestination}
                       </h3>
                       <p className="text-gray-600 text-sm">
                         7-day luxury journey
