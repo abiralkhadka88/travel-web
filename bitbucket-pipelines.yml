@@ -7,8 +7,6 @@ pipelines:
           caches:
             - node
           image: node:20-slim
-          runs-on:
-            - self.hosted
           script:
             - npm install
             - unset CI
@@ -19,7 +17,6 @@ pipelines:
 
       - step:
           name: Deploy to development S3 bucket
-          deployment: development
           script:
             - pipe: atlassian/aws-s3-deploy:0.3.8
               variables:
