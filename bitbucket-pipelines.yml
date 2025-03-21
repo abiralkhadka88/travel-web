@@ -8,8 +8,8 @@ pipelines:
             - node
           image: node:20-slim
           script:
+            - npm config set legacy-peer-deps true
             - npm install
-            - unset CI
             - while true; do date && echo "Memory usage in megabytes:" && echo $((`cat /sys/fs/cgroup/memory/memory.memsw.usage_in_bytes | awk '{print $1}'`/1048576)) && echo "" && sleep 5; done &
             - npm run build
           artifacts:
