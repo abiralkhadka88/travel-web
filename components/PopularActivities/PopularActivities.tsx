@@ -73,7 +73,7 @@ const treks = [
 
 const TrekCard = ({ trek }: { trek: Trek }) => {
   return (
-    <Link href={`/${trek.slug}`} className="group">
+    <Link href={`/${trek.slug}`} className="group" prefetch={true}>
       <div className="relative overflow-hidden rounded-lg shadow-warm-md hover:shadow-warm-xl transition-all duration-300">
         <div className="relative aspect-[4/3] h-80 w-full">
           <Image

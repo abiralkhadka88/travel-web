@@ -1,14 +1,23 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 
-const fontSans = Plus_Jakarta_Sans({
+// const fontSans = Plus_Jakarta_Sans({
+//   subsets: ["latin"],
+//   weight: ["300", "400", "500", "600", "700", "800"],
+//   variable: "--font-fontSans",
+// });
+
+const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-  variable: "--font-fontSans",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
+// const openSans = Open_Sans({
+//   subsets: ["latin"],
+//   weight: ["300", "400", "500", "600", "700", "800"],
+// });
 
 export const metadata: Metadata = {
   title: "Pearl Holidays Pvt Ltd",
@@ -22,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${fontSans} antialiased min-h-screen bg-white`}>
+      <body className={`${montserrat} antialiased min-h-screen bg-white`}>
         <Navbar />
         <main>{children}</main>
         <Footer />

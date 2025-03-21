@@ -228,7 +228,7 @@ const HeroSection = () => {
       {/* Hero Background with fixed height */}
       <div className="absolute inset-0 bg-gradient-to-r from-sky-500/90 to-blue-600/90">
         <Image
-          src="https://images.pexels.com/photos/9150857/pexels-photo-9150857.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          src="https://images.pexels.com/photos/3142916/pexels-photo-3142916.jpeg"
           // src="https://images.pexels.com/photos/2902939/pexels-photo-2902939.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           alt="Hero background"
           fill
@@ -236,7 +236,9 @@ const HeroSection = () => {
           className="object-cover h-full"
         />
         {/* <div className="absolute inset-0 bg-black/40" /> */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#FFB800]/20 to-[#F59E0B]/20" />
+        <div className="absolute " />
+
+        {/* <div className="absolute inset-0 bg-gradient-to-r from-[#FFB800]/20 to-[#F59E0B]/20" /> */}
       </div>
 
       {/* Content */}

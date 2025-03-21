@@ -97,6 +97,24 @@ export default {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-100%)" },
         },
+             loading: {
+       '0%': { width: '0%' },
+       '50%': { width: '70%' },
+       '100%': { width: '100%' }
+     },
+          progress: {
+       '0%': { width: '0%' },
+       '100%': { width: '100%' }
+     },
+     leg: {
+       '0%': { transform: 'rotate(30deg)' },
+       '100%': { transform: 'rotate(-30deg)' }
+     },
+     fly: {
+      '0%': { transform: 'translate(-50%, -50%) rotate(0deg) translateX(40px)' },
+      '50%': { transform: 'translate(-50%, -50%) rotate(180deg) translateX(40px)' },
+      '100%': { transform: 'translate(-50%, -50%) rotate(360deg) translateX(40px)' }
+    }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -104,6 +122,13 @@ export default {
         "fade-in": "fade-in 0.5s ease-out forwards",
         "fade-out": "fade-out 0.5s ease-out forwards",
         ticker: "ticker 20s linear infinite",
+         'loading-bar': 'loading 1.5s ease-in-out infinite',
+              'expedition-progress': 'progress 2s linear',
+     'leg': 'leg 0.6s infinite alternate',
+     'leg-alt': 'leg 0.6s infinite alternate-reverse',
+     fly: 'fly 2s ease-in-out infinite'
+
+
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],

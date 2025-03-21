@@ -137,10 +137,10 @@ export const footerData = {
   company: {
     title: "Company",
     links: [
-      { text: "Core Values Luxury Holidays Nepal", href: "/core-values" },
+      { text: "Core Values Pearls Holidays Nepal", href: "/core-values" },
       { text: "Refund and Cancellation policy", href: "/refund-policy" },
       { text: "Travel Blog", href: "/blog" },
-      { text: "Why Luxury Holidays Nepal?", href: "/why-us" },
+      { text: "Why Pearls Holidays Nepal?", href: "/why-us" },
       { text: "Legal Documents", href: "/legal" },
       { text: "Work with us", href: "/careers" },
     ],

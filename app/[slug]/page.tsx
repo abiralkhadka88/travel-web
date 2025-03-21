@@ -36,7 +36,7 @@
 //     meals: "All Standard Meals throughout the trip",
 //     singleSupplement: "USD 300",
 //     description:
-//       "A Seven-Day Majestic Bhutan Tour by Luxury Holidays Nepal Pvt. Ltd. is a journey through the heart and soul of Bhutan, a mystical kingdom nestled in the Himalayas. Over seven days, travelers will immerse themselves in the beauty and tranquility of Bhutan's monastic cities, rugged landscapes, and vibrant culture. From the iconic Tiger's Nest Monastery perched on a cliff to the lush valleys of Punakha, each day brings a new adventure. Explore ancient dzongs, meet friendly locals, and savor Bhutanese delicacies. With luxurious accommodations, expert guidance, and all-inclusive services, this tour promises an unforgettable experience of Bhutan's majestic wonders.",
+//       "A Seven-Day Majestic Bhutan Tour by Pearls Holidays Nepal Pvt. Ltd. is a journey through the heart and soul of Bhutan, a mystical kingdom nestled in the Himalayas. Over seven days, travelers will immerse themselves in the beauty and tranquility of Bhutan's monastic cities, rugged landscapes, and vibrant culture. From the iconic Tiger's Nest Monastery perched on a cliff to the lush valleys of Punakha, each day brings a new adventure. Explore ancient dzongs, meet friendly locals, and savor Bhutanese delicacies. With luxurious accommodations, expert guidance, and all-inclusive services, this tour promises an unforgettable experience of Bhutan's majestic wonders.",
 //     pricing: [
 //       {
 //         people: "1 person",
@@ -524,9 +524,9 @@ const faqsData = [
         category: "General Information",
         questions: [
           {
-            question: "Why trek with Luxury Holidays Nepal?",
+            question: "Why trek with Pearls Holidays Nepal?",
             answer:
-              "Luxury Holidays Nepal offers unparalleled service with experienced guides, premium accommodations, and personalized itineraries. With a decade of expertise in the region, we ensure safety, comfort, and unforgettable experiences.",
+              "Pearls Holidays Nepal offers unparalleled service with experienced guides, premium accommodations, and personalized itineraries. With a decade of expertise in the region, we ensure safety, comfort, and unforgettable experiences.",
           },
           {
             question:
@@ -854,6 +854,13 @@ const TrekCard = ({ trek }: { trek: SimilarPackages }) => {
 };
 
 const TourDetail = () => {
+  // const [loading, setLoading] = useState(true);
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //   }, 1000);
+  // }, []);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showInquiryModal, setShowInquiryModal] = useState(false);
   const [showCallbackModal, setShowCallbackModal] = useState(false);
@@ -944,6 +951,8 @@ const TourDetail = () => {
         item.question === questionIndex
     );
   };
+
+  // if (loading) return <LoadingAnimation />;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -1113,7 +1122,7 @@ const TourDetail = () => {
                 </h2>
                 <div className="prose max-w-none">
                   <p className="text-gray-600">
-                    A Seven-Day Majestic Bhutan Tour by Luxury Holidays Nepal
+                    A Seven-Day Majestic Bhutan Tour by Pearls Holidays Nepal
                     Pvt. Ltd. is a journey through the heart and soul of Bhutan,
                     a mystical kingdom nestled in the Himalayas. Over seven
                     days, travelers will immerse themselves in the beauty and
@@ -1377,12 +1386,12 @@ const TourDetail = () => {
                       </div>
                     ))}
                   </div>
-
-                  <Button className="w-full mb-3 bg-red-500 hover:bg-red-600 text-white">
-                    <Link href={`/booking/${"bhutan-tour"}`}>
+                  <Link href={`/booking/${"bhutan-tour"}`} prefetch>
+                    <Button className="w-full mb-3 bg-red-500 hover:bg-red-600 text-white">
                       Check Availability
-                    </Link>
-                  </Button>
+                    </Button>
+                  </Link>
+
                   <Button
                     variant="outline"
                     className="w-full"

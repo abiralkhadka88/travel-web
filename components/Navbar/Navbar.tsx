@@ -12,6 +12,7 @@ import {
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const menuItems = [
   {
@@ -151,6 +152,9 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const pathname = usePathname();
+  const isNotIndexPage = pathname !== "/";
+
   return (
     <nav
       className={`fixed w-full z-50 transition-all duration-300 ${
@@ -164,7 +168,13 @@ const Navbar = () => {
               href="/"
               className="font-serif text-2xl font-bold text-gray-900"
             >
-              <Image src={"/logo.jpg"} alt="logo" height={36} width={50} />
+              <Image
+                src={"/logo.jpg"}
+                alt="logo"
+                height={36}
+                width={50}
+                className="mix-blend-color-multiply"
+              />
             </Link>
           </div>
 
@@ -175,7 +185,14 @@ const Navbar = () => {
                   <NavigationMenuItem key={item.title}>
                     {item.subItems ? (
                       <>
-                        <NavigationMenuTrigger className="group uppercase hover:text-primary  font-semibold transition-all ease-in-out duration-100">
+                        <NavigationMenuTrigger
+                          className={cn(
+                            "group uppercase text-white hover:text-primary  font-semibold transition-all ease-in-out duration-100",
+                            isScrolled || isNotIndexPage
+                              ? "text-black"
+                              : "text-white"
+                          )}
+                        >
                           {item.title}
                           {/* <ChevronDown className="ml-1 h-4 w-4 transition duration-300 group-data-[state=open]:rotate-180" /> */}
                         </NavigationMenuTrigger>
@@ -209,7 +226,10 @@ const Navbar = () => {
                         href={item.href}
                         className={cn(
                           navigationMenuTriggerStyle(),
-                          "hover:text-primary font-semibold"
+                          " hover:text-primary font-semibold",
+                          isScrolled || isNotIndexPage
+                            ? "text-balance"
+                            : "text-white"
                         )}
                       >
                         {item.title}
@@ -221,13 +241,16 @@ const Navbar = () => {
             </NavigationMenu>
           </div>
 
-          <div className="hidden md:flex gap-2 items-center">
+          <div className="hidden md:flex gap-2 items-center bg-white/90 px-2 py-1 rounded-2xl">
             <div className="bg-sky-500/90 flex rounded-full p-1 w-8 h-8 items-center justify-center text-white font-medium tracking-wider">
               GB
             </div>
-            <div className="flex flex-col">
-              <span className="text-xs text-gray-500">Whatsapp, Viber</span>
-              <span className="text-sm text-gray-700">+977-9851079682</span>
+            <div className="flex flex-col ">
+              <span className="text-sm">
+                <span className="text-green-500">Whatsapp</span>,{" "}
+                <span className="text-[#665CAC]">Viber</span>
+              </span>
+              <span className="text-sm text-gray-900">+977-9876543210</span>
             </div>
           </div>
 
