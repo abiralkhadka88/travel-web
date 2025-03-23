@@ -14,7 +14,7 @@ interface Trek {
   slug: string;
 }
 
-const treks = [
+export const treks = [
   {
     id: 1,
     title: "Majestic Bhutan Tour",
